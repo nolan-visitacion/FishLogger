@@ -6,7 +6,10 @@ To start using the Fish Logger, simply run main.py from your terminal:
 The program is structured into several modules:
 
 main.py: The entry point of the application, handling user interactions.
+
 controller.py: Manages the business logic, coordinating data retrieval and updates.
+
 view.py: Handles all output formatting and display functions.
+
 database.py: Contains all database interaction commands, ensuring data integrity and retrieval.
 
