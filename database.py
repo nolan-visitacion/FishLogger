@@ -4,16 +4,11 @@ import os
 class Database:
     def __init__(self):
         self.conn = psycopg2.connect(
-            dbname=os.getenv('POSTGRES_DB', 'testdb'),
+            dbname=os.getenv('POSTGRES_DB', 'catch_log'),
             user=os.getenv('POSTGRES_USER', 'postgres'),
-            password=os.getenv('POSTGRES_PASSWORD', 'postgres'),
+            password=os.getenv('POSTGRES_PASSWORD', 'password'),
             host=os.getenv('POSTGRES_HOST', 'localhost'),
             port=os.getenv('POSTGRES_PORT', '5432'),
-            dbname="catch_log",
-            user="postgres",
-            password="password",
-            host='localhost',
-            port=5432
             
         )
         self.cur = self.conn.cursor()
