@@ -48,25 +48,22 @@ class View:
         for number, description in water_body_types.items():
             print(f"{number}. {description.capitalize()}")   
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        
+        try:
+            body_of_water_choice = int(self.get_user_input("Enter the number for the body of water: "))
+            body_of_water = water_body_types[body_of_water_choice]
+        except (ValueError, KeyError):
+            print("Invalid selection. Please enter a valid number.")
+            return None 
 
-        while True:
-            try:
-                choice = int(input("Enter the number corresponding to body of water: "))
-                if choice in water_body_types:
-                    body_of_water = water_body_types[choice]
-                else:
-                    print("Invalid selection. Please select a valid option.")
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-            
-            print("Now, let's figure out the city and state you caught your fish.")
-            city = self.get_user_input("Enter the city name: ")
-            state_name = self.get_user_input("Enter the state name: ")
-
-            return location_name, city, state_name, body_of_water
+        print("Now, let's figure out the city and state you caught your fish.")
+        city = self.get_user_input("Enter the city name: ")
+        state_name = self.get_user_input("Enter the state name: ")
+        
+        return location_name, city, state_name, body_of_water
         
     def get_weather_info(self):
-        location_name, city, state_name, body_of_water = self.get_location_info(location_name, city, state_name, body_of_water)
+        location_name, city, state_name, body_of_water = self.get_location_info()
         forecast_date = self.get_user_input("Enter the catch date (YYYY-MM-DD): ")
         temperature = float(self.get_user_input("Enter the temperature (in F): "))
         condition = self.get_user_input("Enter the weather description: ")

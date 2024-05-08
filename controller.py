@@ -29,8 +29,8 @@ class FishingLoggerController:
     def add_location(self, description, city, state_name, body_of_water):
         return self.db.insert_location(description.strip().upper(), city.strip().upper(), self.db.get_state_id(state_name.strip().upper()), body_of_water.strip().upper())
 
-    def add_fish(self, fish_name, fish_color):
-        return self.db.insert_fish(fish_name.strip().upper(), fish_color.strip().upper())
+    def add_fish(self, fish_name, fish_subspecies, fish_color):
+        return self.db.insert_fish(fish_name.strip().upper(), fish_subspecies.strip().upper(), fish_color.strip().upper())
 
     def add_weather(self, forecast_date, temperature, condition, location_name, city, state, body_of_water):
         location_id = self.add_location(location_name.strip().upper(), city.strip().upper(), state.strip().upper(), body_of_water.strip().upper())
@@ -119,7 +119,6 @@ class FishingLoggerController:
         most_common_condition = Counter(conditions).most_common(1)[0][0]
         forecast_date = weather_data[0]['dt_txt'].split(" ")[0]  # Assuming all entries are from the same date
         
-
         try:
             weather_id = self.db.insert_weather(forecast_date, location_id, mean_temperature, most_common_condition)
             return weather_id

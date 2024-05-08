@@ -121,8 +121,8 @@ class Database:
                 'lure_id': row[3],
                 'weather_id': row[4],
                 'location_id': row[5],
-                'weight': row[5],
-                'length': row[6],
+                'weight': row[6],
+                'length': row[7],
             }
             catches.append(catch)
         
@@ -149,6 +149,7 @@ class Database:
    
     #weather related queries
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    """
     def weather_data_exists(self, location_id, forecast_date):
         try:
             weather_id = self.get_weather_by_date_location(forecast_date, location_id)
@@ -165,7 +166,8 @@ class Database:
         self.cur.execute(sql_query, (forecast_date, location_id))
         result = self.cur.fetchone()
         return result[0] if result else None
-    
+    """
+        
     def close_connection(self):
         self.cur.close()
         self.conn.close()
