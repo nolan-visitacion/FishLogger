@@ -8,7 +8,13 @@ class Database:
             user=os.getenv('POSTGRES_USER', 'postgres'),
             password=os.getenv('POSTGRES_PASSWORD', 'postgres'),
             host=os.getenv('POSTGRES_HOST', 'localhost'),
-            port=os.getenv('POSTGRES_PORT', '5432')
+            port=os.getenv('POSTGRES_PORT', '5432'),
+            dbname="catch_log",
+            user="postgres",
+            password="password",
+            host='localhost',
+            port=5432
+            
         )
         self.cur = self.conn.cursor()
 
