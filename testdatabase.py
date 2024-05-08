@@ -3,10 +3,12 @@ from database import Database
 from unittest.mock import MagicMock, patch
 
 class TestDatabase(unittest.TestCase):
-    def setUp(self):
+    @patch('psycopg2.connect')
+    def setUp(self, mock_connect):
+        mock_connect.return_value = MagicMock()
         self.db = Database()
-        self.db.cur = MagicMock()
-        self.db.conn = MagicMock()
+        self.db.conn = mock_connect.return_value
+        self.db.cur = self.db.conn.cursor()
 
     #test | insert into database
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
